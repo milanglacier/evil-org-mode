@@ -304,7 +304,7 @@ The behavior of this function can be controlled using `evil-org-special-o/O’."
                 (row (nth (1- (org-table-current-line)) rows)))
            (cl-every 'string-empty-p row)))
         ((org-at-item-p)
-         (string-match-p "^[[:space:]]*-[[:space:]]*\\(::[[:space:]]*\\)?$"
+         (string-match-p "^[[:space:]]*\\([+-]\\|[1-9]+\\.\\)[[:space:]]*\\(::[[:space:]]*\\)?$"
                          (thing-at-point 'line)))))
 
 ;; other
@@ -518,7 +518,7 @@ If a prefix argument is given, links are opened in incognito mode."
         (contents-end (org-element-property :contents-end element))
         (post-affiliated (org-element-property :post-affiliated element))
         (post-blank (org-element-property :post-blank element)))
-    (cond ((or (s-ends-with? "-block" (symbol-name type))
+    (cond ((or (string-suffix-p "-block" (symbol-name type))
                (memq type '(latex-environment)))
            ;; Special case on block types (thanks Nicolas Goaziou)
            (list (org-with-point-at post-affiliated (line-beginning-position 2))

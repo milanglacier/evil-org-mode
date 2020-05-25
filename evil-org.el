@@ -265,7 +265,12 @@ Passing in any prefix argument, executes the command without special behavior."
                      (evil-append nil)
                      (org-insert-item (org-at-item-checkbox-p))))
          (evil-insert nil))
-        ((evil-open-below count))))
+        (t
+         (evil-open-below count)
+         (and org-src-tab-acts-natively
+              (org-in-src-block-p t)
+              (org-babel-do-in-edit-buffer
+               (call-interactively #'indent-according-to-mode))))))
 
 (defun evil-org-open-above (count)
   "Clever insertion of org item.
@@ -280,7 +285,12 @@ Passing in any prefix argument, executes the command without special behavior."
               (progn (beginning-of-line)
                      (org-insert-item (org-at-item-checkbox-p))))
          (evil-insert nil))
-        ((evil-open-above count))))
+        (t
+         (evil-open-above count)
+         (and org-src-tab-acts-natively
+              (org-in-src-block-p t)
+              (org-babel-do-in-edit-buffer
+               (call-interactively #'indent-according-to-mode))))))
 
 (defun evil-org-return (arg)
   "Like `org-return', but continues items and tables like `evil-open-below'.

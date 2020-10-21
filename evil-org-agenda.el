@@ -51,6 +51,20 @@
   (when evil-org-agenda-mode
     (evil-normalize-keymaps)))
 
+(evil-define-command evil-org-agenda-digit-argument-or-evil-beginning-of-line ()
+  :digit-argument-redirection evil-beginning-of-line
+  :keep-visual t
+  :repeat nil
+  (interactive)
+  (cond ((or current-prefix-arg (bolp))
+         (setq this-command (function digit-argument))
+         (call-interactively #'digit-argument))
+        ((let ((target
+                (or (command-remapping #'evil-beginning-of-line)
+                    #'evil-beginning-of-line)))
+           (setq this-command target)
+           (call-interactively target)))))
+
 (defun evil-org-agenda-set-keys ()
   "Set motion state keys for `org-agenda'."
   (evil-set-initial-state 'org-agenda-mode 'motion)
@@ -83,6 +97,7 @@
     (kbd "C-k") 'org-agenda-previous-item
     (kbd "[") 'org-agenda-earlier
     (kbd "]") 'org-agenda-later
+    "0" 'evil-org-agenda-digit-argument-or-evil-beginning-of-line
 
     ;; manipulation
     ;; We follow standard org-mode bindings (not org-agenda bindings):

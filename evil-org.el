@@ -756,7 +756,7 @@ Includes tables, list items and subtrees."
     (kbd "TAB") #'org-cycle
     (kbd "<tab>") #'org-cycle
     (kbd "<backtab>") #'org-shifttab
-    (kbd "g TAB") 'org-cycle
+    (kbd "g TAB") #'org-cycle
     (kbd "<") #'evil-org-<
     (kbd ">") #'evil-org->))
 
@@ -814,10 +814,10 @@ Includes tables, list items and subtrees."
   "Shift bindings that conflict with evil bindings."
   (let-alist evil-org-movement-bindings
     (evil-define-key 'normal 'evil-org-mode
-      (capitalize .left) 'org-shiftleft
-      (capitalize .right) 'org-shiftright
-      (capitalize .down) 'org-shiftdown
-      (capitalize .up) 'org-shiftup)
+      (capitalize .left) #'org-shiftleft
+      (capitalize .right) #'org-shiftright
+      (capitalize .down) #'org-shiftdown
+      (capitalize .up) #'org-shiftup)
 
     ;; Make shift keys fall back on the keys they have replaced
     (when evil-org-want-hybrid-shift

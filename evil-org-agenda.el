@@ -81,6 +81,7 @@
     (kbd "RET") 'org-agenda-switch-to
     (kbd "S-<return>") 'org-agenda-goto
     (kbd "S-RET") 'org-agenda-goto
+    (kbd "g TAB") 'org-agenda-goto
     (kbd "M-<return>") 'org-agenda-recenter
     (kbd "M-RET") 'org-agenda-recenter
 
@@ -93,6 +94,9 @@
     "k" 'org-agenda-previous-line
     "gj" 'org-agenda-next-item
     "gk" 'org-agenda-previous-item
+    "gH" 'evil-window-top
+    "gM" 'evil-window-middle
+    "gL" 'evil-window-bottom
     (kbd "C-j") 'org-agenda-next-item
     (kbd "C-k") 'org-agenda-previous-item
     (kbd "[") 'org-agenda-earlier
@@ -134,7 +138,7 @@
     "~" 'org-agenda-bulk-toggle-all
     "*" 'org-agenda-bulk-mark-all
     "%" 'org-agenda-bulk-mark-regexp
-    "M" 'org-agenda-bulk-remove-all-marks
+    "M" 'org-agenda-bulk-unmark-all
     "x" 'org-agenda-bulk-action
 
     ;; refresh
@@ -156,7 +160,7 @@
     ;; 'org-agenda-day-view
     ;; 'org-agenda-week-view
     ;; 'org-agenda-year-view
-    "z" 'org-agenda-view-mode-dispatch
+    "gD" 'org-agenda-view-mode-dispatch
     "ZD" 'org-agenda-dim-blocked-tasks
 
     ;; filter

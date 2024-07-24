@@ -113,7 +113,6 @@ before calling `evil-org-set-keytheme'."
   "Buffer local minor mode for evil-org"
   :init-value nil
   :lighter " EvilOrg"
-  :keymap evil-org-mode-map
   :group 'evil-org)
 
 (with-eval-after-load 'evil-surround

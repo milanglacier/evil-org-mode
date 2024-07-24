@@ -894,11 +894,6 @@ Optional argument THEME list of themes. See evil-org-keytheme for a list of valu
      (assq 'evil-org-mode minor-mode-map-alist)
      evil-org-mode-map)))
 
-(defun evil-org-edit-src-exit ()
-  "Save then `evil-edit-src-exit'."
-  (interactive)
-  (mapc #'call-interactively '(evil-write org-edit-src-exit)))
-
 ;;; vim-like confirm/abort for capture and src
 ;;; Taken from mwillsey (Max Willsey) on https://github.com/syl20bnr/spacemacs/pull/7400
 (with-eval-after-load 'org-capture
@@ -907,8 +902,8 @@ Optional argument THEME list of themes. See evil-org-keytheme for a list of valu
   (define-key org-capture-mode-map [remap evil-quit]                    #'org-capture-kill))
 
 (with-eval-after-load 'org-src
-  (define-key org-src-mode-map [remap evil-save-and-close]          #'evil-org-edit-src-exit)
-  (define-key org-src-mode-map [remap evil-save-modified-and-close] #'evil-org-edit-src-exit)
+  (define-key org-src-mode-map [remap evil-save-and-close]          #'org-edit-src-exit)
+  (define-key org-src-mode-map [remap evil-save-modified-and-close] #'org-edit-src-exit)
   (define-key org-src-mode-map [remap evil-quit]                    #'org-edit-src-abort))
 
 (with-eval-after-load 'org-table
